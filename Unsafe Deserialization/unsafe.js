@@ -8,7 +8,7 @@ app.use(cookieParser())
 app.get('/', function(req, res) {
  if (req.cookies.profile) {
    var str = new Buffer(req.cookies.profile, 'base64').toString();
-   var obj = serialize.unserialize(str);
+   var obj = serialize.unserialize(str, { safe: true });
    if (obj.username) {
      res.send("Hello " + escape(obj.username));
    }
