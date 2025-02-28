@@ -1,5 +1,6 @@
 package com.example.springxss;
 
+import org.owasp.encoder.Encode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ public class XSSController {
 
     @GetMapping("/hello")
     ResponseEntity<String> hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new ResponseEntity<>("Hello World!" + name, HttpStatus.OK);
+        return new ResponseEntity<>("Hello World!" + Encode.forHtml(name), HttpStatus.OK);
     }
 
 }
